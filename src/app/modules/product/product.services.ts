@@ -16,9 +16,14 @@ const allProductDB = async () => await ProductModel.find({});
 
 const searchByIdDB = async (id: string) => await ProductModel.findById(id);
 
+const updateProductByIdDB = async (id: string, data: Partial<TProduct>) => {
+  return await ProductModel.findByIdAndUpdate(id, { ...data }, { new: true });
+};
+
 export const StudentServices = {
   createProductDB,
   searchProductDB,
   allProductDB,
   searchByIdDB,
+  updateProductByIdDB,
 };

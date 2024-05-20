@@ -74,7 +74,24 @@ export const updateProduct = async (
   req: Request,
   res: Response,
   next: NextFunction,
-) => {};
+) => {
+  const { productId } = req.params;
+  const dataToUpdate = req.body;
+  try {
+    const data = await StudentServices.updateProductByIdDB(
+      productId,
+      dataToUpdate,
+    );
+
+    return res.status(201).json({
+      success: true,
+      message: "Product updated successfully!",
+      data,
+    });
+  } catch (error) {
+    return next(error);
+  }
+};
 
 export const deleteProduct = async (
   req: Request,
