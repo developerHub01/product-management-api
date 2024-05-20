@@ -1,8 +1,11 @@
 import express, { Application, NextFunction, Request, Response } from "express";
 const app: Application = express();
+import productRoute from "./app/modules/product/product.route";
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.use("/api/products", productRoute);
 
 app.get("/", (req: Request, res: Response) => {
   res.status(200).json({
@@ -23,8 +26,8 @@ app.use((error: any, req: Request, res: Response, next: NextFunction) => {
   const message = error.message || "Internal Server Error";
   return res.status(statusCode).json({
     success: false,
-    message
-  })
+    message,
+  });
 });
 
 export default app;
