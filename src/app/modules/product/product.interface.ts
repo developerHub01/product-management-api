@@ -1,5 +1,5 @@
 export interface TVariant {
-  types: string;
+  type: string;
   value: string;
 }
 export interface TInventory {
