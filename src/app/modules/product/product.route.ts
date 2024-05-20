@@ -14,4 +14,4 @@ route.get("/:productId", specificProduct);
 route.put("/:productId", updateProduct);
 route.delete("/:productId", deleteProduct);
 
-export default route;
+export const productRoute = route;

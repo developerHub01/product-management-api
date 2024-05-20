@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from "express";
+import { productSchemaValidator } from "./schema.validation.zod";
 
 export const createProduct = async(req:Request, res:Response, next:NextFunction)=>{
   

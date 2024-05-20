@@ -1,6 +1,6 @@
 import express, { Application, NextFunction, Request, Response } from "express";
 const app: Application = express();
-import productRoute from "./app/modules/product/product.route";
+import { productRoute } from "./app/modules/product/product.route";
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
