@@ -101,7 +101,7 @@ export const deleteProduct = async (
   const { productId } = req.params;
 
   try {
-    const data = await ProductServices.deleteProductByIdDB(productId);
+    await ProductServices.deleteProductByIdDB(productId);
 
     return res.status(200).json({
       success: true,

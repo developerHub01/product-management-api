@@ -51,4 +51,28 @@ export const searchOrders = async (
   req: Request,
   res: Response,
   next: NextFunction,
-) => {};
+) => {
+  const { email } = req.query;
+  let data;
+  try {
+    if (typeof email === "string")
+      data = await OrderServices.searchOrderByEmailDB(email);
+    else data = await OrderServices.allOrdersDB();
+
+    if (!data || !data?.length) {
+      return res.status(200).json({
+        success: true,
+        message: "Order not found",
+      });
+    }
+    return res.status(200).json({
+      success: false,
+      message: email
+        ? "Orders fetched successfully for user email!"
+        : "Orders fetched successfully!",
+      data,
+    });
+  } catch (error) {
+    return next(error);
+  }
+};
