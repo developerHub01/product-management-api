@@ -1,10 +1,6 @@
 import { Schema, model } from "mongoose";
 import { TInventory, TProduct, TVariant } from "./product.interface";
 
-const tagsSchema = new Schema<string>({
-  type: String,
-  trim: true,
-});
 const variantsSchema = new Schema<TVariant>({
   type: {
     type: String,
@@ -15,18 +11,23 @@ const variantsSchema = new Schema<TVariant>({
     trim: true,
   },
 });
-const inventorySchema = new Schema<TInventory>({
-  quantity: {
-    type: Number,
-    required: true,
-    default: 0,
+const inventorySchema = new Schema<TInventory>(
+  {
+    quantity: {
+      type: Number,
+      required: true,
+      default: 0,
+    },
+    inStock: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
   },
-  inStock: {
-    type: Boolean,
-    required: true,
-    default: false,
+  {
+    _id: false,
   },
-});
+);
 
 const productSchema = new Schema<TProduct>({
   name: {
@@ -48,7 +49,12 @@ const productSchema = new Schema<TProduct>({
     required: true,
     trim: true,
   },
-  tags: [tagsSchema],
+  tags: [
+    {
+      type: String,
+      trim: true,
+    },
+  ],
   variants: [variantsSchema],
   inventory: inventorySchema,
 });

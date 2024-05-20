@@ -25,7 +25,7 @@ const inventorySchemaValidator = zod.object({
     required_error: "quantity are required",
     invalid_type_error: "quantity must be number",
   }),
-  inStock: zod.number({
+  inStock: zod.boolean({
     required_error: "inStock are required",
     invalid_type_error: "inStock must be boolean",
   }),
