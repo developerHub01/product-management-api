@@ -6,7 +6,16 @@ const createProductDB = async (productData: TProduct) => {
     ...productData,
   });
 };
+const searchProductDB = async (searchTerm: string) => {
+  const regex = new RegExp(searchTerm, "i");
+  return await ProductModel.find({
+    $or: [{ name: regex }, { description: regex }],
+  });
+};
+const allProductDB = async () => await ProductModel.find({});
 
 export const StudentServices = {
   createProductDB,
+  searchProductDB,
+  allProductDB,
 };

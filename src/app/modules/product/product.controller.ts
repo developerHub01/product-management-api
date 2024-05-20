@@ -31,7 +31,25 @@ export const searchProduct = async (
   req: Request,
   res: Response,
   next: NextFunction,
-) => {};
+) => {
+  const { searchTerm } = req.query;
+  let data;
+  try {
+    if (typeof searchTerm === "string")
+      data = await StudentServices.searchProductDB(searchTerm);
+    else data = await StudentServices.allProductDB();
+
+    return res.status(200).json({
+      success: true,
+      message: searchTerm
+        ? `Products matching search term '${searchTerm}' fetched successfully!`
+        : "Products fetched successfully!",
+      data,
+    });
+  } catch (error) {
+    return next(error);
+  }
+};
 
 export const specificProduct = async (
   req: Request,
