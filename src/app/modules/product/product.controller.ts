@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { productSchemaValidator } from "./schema.validation.zod";
-import { StudentServices } from "./product.services";
+import { ProductServices } from "./product.services";
 
 export const createProduct = async (
   req: Request,
@@ -12,7 +12,7 @@ export const createProduct = async (
   try {
     const product = productSchemaValidator.parse(productData);
 
-    const createdProduct = await StudentServices.createProductDB(product);
+    const createdProduct = await ProductServices.createProductDB(product);
 
     res.status(201).json({
       success: true,
@@ -36,8 +36,8 @@ export const searchProduct = async (
   let data;
   try {
     if (typeof searchTerm === "string")
-      data = await StudentServices.searchProductDB(searchTerm);
-    else data = await StudentServices.allProductDB();
+      data = await ProductServices.searchProductDB(searchTerm);
+    else data = await ProductServices.allProductDB();
 
     return res.status(200).json({
       success: true,
@@ -59,7 +59,7 @@ export const specificProduct = async (
   const { productId } = req.params;
 
   try {
-    const data = await StudentServices.searchByIdDB(productId);
+    const data = await ProductServices.searchByIdDB(productId);
     res.status(200).json({
       success: true,
       message: "Product fetched successfully!",
@@ -78,7 +78,7 @@ export const updateProduct = async (
   const { productId } = req.params;
   const dataToUpdate = req.body;
   try {
-    const data = await StudentServices.updateProductByIdDB(
+    const data = await ProductServices.updateProductByIdDB(
       productId,
       dataToUpdate,
     );
@@ -101,7 +101,7 @@ export const deleteProduct = async (
   const { productId } = req.params;
 
   try {
-    const data = await StudentServices.deleteProductByIdDB(productId);
+    const data = await ProductServices.deleteProductByIdDB(productId);
 
     return res.status(200).json({
       success: true,

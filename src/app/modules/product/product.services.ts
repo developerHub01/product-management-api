@@ -23,7 +23,7 @@ const deleteProductByIdDB = async (id: string) => {
   return await ProductModel.findByIdAndDelete(id);
 };
 
-export const StudentServices = {
+export const ProductServices = {
   createProductDB,
   searchProductDB,
   allProductDB,

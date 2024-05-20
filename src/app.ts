@@ -1,11 +1,13 @@
 import express, { Application, NextFunction, Request, Response } from "express";
 const app: Application = express();
 import { productRoute } from "./app/modules/product/product.route";
+import { orderRoute } from "./app/modules/order/order.route";
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/api/products", productRoute);
+app.use("/api/orders", orderRoute);
 
 app.get("/", (req: Request, res: Response) => {
   res.status(200).json({
