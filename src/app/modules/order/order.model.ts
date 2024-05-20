@@ -1,6 +1,18 @@
 import { Schema, model } from "mongoose";
 import { TOrder } from "./order.interface";
 
+/*
+
+Schema for ==================
+
+export interface TOrder {
+  email: string;
+  productId: string;
+  price: number;
+  quantity: number;
+}
+*/
+
 const orderSchema = new Schema<TOrder>({
   email: {
     type: String,
