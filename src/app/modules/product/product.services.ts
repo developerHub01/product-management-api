@@ -19,6 +19,9 @@ const searchByIdDB = async (id: string) => await ProductModel.findById(id);
 const updateProductByIdDB = async (id: string, data: Partial<TProduct>) => {
   return await ProductModel.findByIdAndUpdate(id, { ...data }, { new: true });
 };
+const deleteProductByIdDB = async (id: string) => {
+  return await ProductModel.findByIdAndDelete(id);
+};
 
 export const StudentServices = {
   createProductDB,
@@ -26,4 +29,5 @@ export const StudentServices = {
   allProductDB,
   searchByIdDB,
   updateProductByIdDB,
+  deleteProductByIdDB,
 };

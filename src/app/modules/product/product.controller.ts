@@ -97,4 +97,18 @@ export const deleteProduct = async (
   req: Request,
   res: Response,
   next: NextFunction,
-) => {};
+) => {
+  const { productId } = req.params;
+
+  try {
+    const data = await StudentServices.deleteProductByIdDB(productId);
+
+    return res.status(200).json({
+      success: true,
+      message: "Product deleted successfully!",
+      data: null,
+    });
+  } catch (error) {
+    return next(error);
+  }
+};
