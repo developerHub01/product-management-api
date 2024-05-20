@@ -14,8 +14,11 @@ const searchProductDB = async (searchTerm: string) => {
 };
 const allProductDB = async () => await ProductModel.find({});
 
+const searchByIdDB = async (id: string) => await ProductModel.findById(id);
+
 export const StudentServices = {
   createProductDB,
   searchProductDB,
   allProductDB,
+  searchByIdDB,
 };

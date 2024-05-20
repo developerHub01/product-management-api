@@ -14,14 +14,14 @@ export const createProduct = async (
 
     const createdProduct = await StudentServices.createProductDB(product);
 
-    res.status(200).json({
+    res.status(201).json({
       success: true,
       message: "Product created successfully!",
       data: createdProduct,
     });
   } catch (error) {
     res.status(500).json({
-      success: true,
+      success: false,
       message: error,
     });
   }
@@ -55,7 +55,20 @@ export const specificProduct = async (
   req: Request,
   res: Response,
   next: NextFunction,
-) => {};
+) => {
+  const { productId } = req.params;
+
+  try {
+    const data = await StudentServices.searchByIdDB(productId);
+    res.status(200).json({
+      success: true,
+      message: "Product fetched successfully!",
+      data,
+    });
+  } catch (error) {
+    return next(error);
+  }
+};
 
 export const updateProduct = async (
   req: Request,
