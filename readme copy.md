@@ -16,12 +16,6 @@ npm run start:build // for runing in development environment
 npm run start:prod // for runing in production environment
 ```
 
-Add post and mongodb database uri in example.env file and rename it in .env
-```ts
-PORT=
-MONGO_URI=
-```
-
 -------------------
 ## Project technologies & tools:
 - Typescript
