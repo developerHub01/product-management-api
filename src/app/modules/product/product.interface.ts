@@ -15,9 +15,3 @@ export interface TProduct {
   variants: Array<TVariant>;
   inventory: TInventory;
 }
-export interface TOrder {
-  email: string;
-  productId: string;
-  price: number;
-  quantity: number;
-}
