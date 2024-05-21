@@ -8,17 +8,19 @@ const createOrderDB = async (data: TOrder) => {
   return await OrderModel.create({ ...data });
 };
 /**
- * search order by eamil | service method
+ * search order by eamil or all order | service method
  */
-const searchOrderByEmailDB = async (email: string) =>
-  await OrderModel.find({ email });
+const searchOrderByEmailDB = async (email?: string) =>{
+  /* if email exist in searchTerm */
+  if(typeof email !== "undefined") return await OrderModel.find({ email });
+  /* for all orders */
+  return await OrderModel.find({});
+}
 /**
  * all order | service method
  */
-const allOrdersDB = async () => await OrderModel.find({});
 
 export const OrderServices = {
   createOrderDB,
   searchOrderByEmailDB,
-  allOrdersDB,
 };

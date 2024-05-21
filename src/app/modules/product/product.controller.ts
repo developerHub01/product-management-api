@@ -44,7 +44,7 @@ export const searchProduct = async (
   try {
     if (typeof searchTerm === "string")
       data = await ProductServices.searchProductDB(searchTerm);
-    else data = await ProductServices.allProductDB();
+    else data = await ProductServices.searchProductDB();
 
     return res.status(200).json({
       success: true,

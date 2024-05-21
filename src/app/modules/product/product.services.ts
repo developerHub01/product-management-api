@@ -11,20 +11,19 @@ const createProductDB = async (productData: TProduct) => {
 };
 
 /**
- * search product | service method
+ * search product or all product | service method
  */
-const searchProductDB = async (searchTerm: string) => {
-  const regex = new RegExp(searchTerm, "i");
+const searchProductDB = async (searchTerm?: string) => {
   /* if searchTerm exist on name or description */
-  return await ProductModel.find({
-    $or: [{ name: regex }, { description: regex }],
-  });
+  if (typeof searchTerm !== "undefined") {
+    const regex = new RegExp(searchTerm, "i");
+    return await ProductModel.find({
+      $or: [{ name: regex }, { description: regex }],
+    });
+  }
+  /* for all products */
+  return await ProductModel.find({});
 };
-
-/**
- * all product | service method
- */
-const allProductDB = async () => await ProductModel.find({});
 
 /**
  * search by product | service method
@@ -48,7 +47,6 @@ const deleteProductByIdDB = async (id: string) => {
 export const ProductServices = {
   createProductDB,
   searchProductDB,
-  allProductDB,
   searchByIdDB,
   updateProductByIdDB,
   deleteProductByIdDB,

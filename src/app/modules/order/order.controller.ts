@@ -71,7 +71,7 @@ export const searchOrders = async (
   try {
     if (typeof email === "string")
       data = await OrderServices.searchOrderByEmailDB(email);
-    else data = await OrderServices.allOrdersDB();
+    else data = await OrderServices.searchOrderByEmailDB();
 
     /* If order not found */
     if (!data || !data?.length) {
